@@ -16,12 +16,14 @@ author_secret = "Access Token Secret"
 class listener(StreamListener):
     def on_data(self, data):
         try:
-            # writing data to file
-
+            
+            # We only want the tweet (text) and time
             tweet = data.split(',"text":"')[1].split('","source')[0]
             print(tweet)
-
+            # I used three colons here to be safe. Two will suffice.
             saveAs = str(time.time()) + ':::' + tweet
+            
+            # writing data to file            
             saveFile = open('tweet_cars2.csv', 'a')
             saveFile.write(saveAs)
             saveFile.write('\n')
@@ -45,6 +47,7 @@ twitterStream.filter(track=['car'
                             'chevy', 'ford', 'toyota',
                             'acura', 'kia', 'audi',
                             'chrysler', 'dodge', 'ferrari'
-                                                 'fiat', 'buick', 'cadillac', 'chevrolet',
+                            'fiat', 'buick', 'cadillac', 'chevrolet',
                             'bmw', 'honda', 'jeep', 'lexus', 'mazda',
-                            'mini', 'nissan', 'tesla''volvo', 'saab', 'porsche, mclaren'])
+                            'mini', 'nissan', 'tesla''volvo', 'saab',
+                            'porsche', 'lamborghini', 'mclaren'])
